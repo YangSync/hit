@@ -1,6 +1,6 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
-const moleSize = 75;//50
+const moleSize = 75;
 let score = 0;
 const savedScore = localStorage.getItem('score');
 if (savedScore !== null) {
@@ -18,12 +18,7 @@ moleImage.onload = function () {
 };
 
 function drawMole(x, y) {
-  /*
-  ctx.fillStyle = "brown";
-  ctx.fillRect(x, y, moleSize, moleSize);
-  */
   ctx.drawImage(moleImage, x, y, moleSize, moleSize - 10);
-
 }
 
 function clearCanvas() {
@@ -43,6 +38,7 @@ canvas.addEventListener("click", (event) => {
 
   // Check if the click is on the mole
   if (mouseX >= moleX && mouseX <= moleX + moleSize && mouseY >= moleY && mouseY <= moleY + moleSize) {
+    hit.currentTime = 0;
     hit.play();
     score++;
     updateGame();
