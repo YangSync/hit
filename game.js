@@ -1,6 +1,5 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
-const hit = document.getElementById('hit');
 const moleSize = 75;//50
 let score = 0;
 const savedScore = localStorage.getItem('score');
@@ -8,11 +7,15 @@ if (savedScore !== null) {
   score = parseInt(savedScore); // string->number
 }
 
-const moleImage = new Image();
+const moleImage = new Image();  //圖片預加載
 moleImage.src = "./youtube.png";
 moleImage.onload = function () {
   updateGame();
 };
+
+const hit = new Audio('hit.wav'); //音效預加載
+hit.preload = 'auto';
+hit.load();
 
 function drawMole(x, y) {
   /*
@@ -20,7 +23,6 @@ function drawMole(x, y) {
   ctx.fillRect(x, y, moleSize, moleSize);
   */
   ctx.drawImage(moleImage, x, y, moleSize, moleSize - 10);
-
 
 }
 
