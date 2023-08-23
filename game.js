@@ -7,15 +7,15 @@ if (savedScore !== null) {
   score = parseInt(savedScore); // string->number
 }
 
+const hit = new Audio('hit.mp3'); //音效預加載
+hit.preload = 'auto';
+hit.load();
+
 const moleImage = new Image();  //圖片預加載
 moleImage.src = "./youtube.png";
 moleImage.onload = function () {
   updateGame();
 };
-
-const hit = new Audio('hit.wav'); //音效預加載
-hit.preload = 'auto';
-hit.load();
 
 function drawMole(x, y) {
   /*
