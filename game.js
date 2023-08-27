@@ -73,7 +73,9 @@ let time1id = setInterval(() => {
     ctx.fillText(`Score:${score}`, 400 - 120, 260);
 
     if (best_Score < score) {
+      best_Score = score;
       localStorage.setItem('best_score', score);
+      ctx.fillText('破紀錄', 400 - 120, 120);
     }
     ctx.fillText(`Best Score:${best_Score}`, 400 - 120, 320);
     return;
