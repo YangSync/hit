@@ -1,9 +1,13 @@
+document.body.addEventListener('touchmove', function (e) {
+  e.preventDefault(); //防止滾動
+}, { passive: false }); //passive兼容ios和android
+
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 const moleSize = 75;
 let score = 0;
 let can = true;
-let best_Score = localStorage.getItem('best_score');
+let best_Score = localStorage.getItem('best_score');  //讀歷史最佳成績
 if (best_Score !== null) {
   best_Score = parseInt(best_Score)
 } else {
@@ -98,14 +102,14 @@ function startNewRound() {  //調節黃弟出現速度
   updateGame();
   if (sec >= 30 && sec < 40) {
     document.body.style.backgroundColor = '	#C678FF';
-    randomInterval = Math.floor(Math.random() * (800 - 500) + 500);
+    randomInterval = Math.floor(Math.random() * (750 - 450) + 450);
   }
   else if (sec >= 46) {
     document.body.style.backgroundColor = '#8C8CFF';
     randomInterval = Math.floor(Math.random() * (330 - 100) + 100);
   }
   else {
-    randomInterval = Math.floor(Math.random() * (1000 - 700) + 700);
+    randomInterval = Math.floor(Math.random() * (900 - 700) + 700);
   }
   gameid = setTimeout(startNewRound, randomInterval);
 }
