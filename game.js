@@ -10,9 +10,12 @@ if (best_Score !== null) {
   best_Score = 0;
 }
 
-const hit = new Audio('hit.mp3'); //音效預加載
+/*const hit = new Audio('hit.mp3'); //音效預加載
 hit.preload = 'auto';
-hit.load();
+hit.load();*/
+var sound = new Howl({
+  src: ['hit.mp3']
+});
 
 const moleImage = new Image();  //圖片預加載
 moleImage.src = "./youtube.png";
@@ -46,8 +49,8 @@ function click_event(event) {
   ctx.fill();
   // Check if the click is on the mole
   if (can == true && mouseX >= moleX && mouseX <= moleX + moleSize && mouseY >= moleY && mouseY <= moleY + moleSize) {
-    hit.currentTime = 0;
-    hit.play();
+    //hit.currentTime = 0;
+    sound.play();
     score++;
     ctx.clearRect(120, 64, canvas.width, canvas.height);
     can = false;
@@ -89,20 +92,20 @@ let time1id = setInterval(() => {
 }, 1000, sec);
 
 let hsung_di = 0;
-function startNewRound() {
+function startNewRound() {  //調節黃弟出現速度
   can = true;
   hsung_di++;
   updateGame();
   if (sec >= 30 && sec < 40) {
     document.body.style.backgroundColor = '	#C678FF';
-    randomInterval = Math.floor(Math.random() * (800 - 450) + 450);
+    randomInterval = Math.floor(Math.random() * (800 - 500) + 500);
   }
-  else if (sec >= 45) {
+  else if (sec >= 46) {
     document.body.style.backgroundColor = '#8C8CFF';
-    randomInterval = Math.floor(Math.random() * (300 - 100) + 100);
+    randomInterval = Math.floor(Math.random() * (330 - 100) + 100);
   }
   else {
-    randomInterval = Math.floor(Math.random() * (900 - 600) + 600);
+    randomInterval = Math.floor(Math.random() * (1000 - 700) + 700);
   }
   gameid = setTimeout(startNewRound, randomInterval);
 }
